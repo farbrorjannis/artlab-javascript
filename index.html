@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jannis Politidis - ArtLab Platform</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6; }
+        header { background-color: #8B5E3C; color: #ffffff; padding: 80px 10%; }
+        header h1 { font-size: 2.5rem; font-weight: 400; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        main { max-width: 1200px; margin: 80px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 120px; }
+        .grid-item { display: flex; align-items: center; gap: 5%; width: 100%; }
+        .grid-item:nth-child(even) { flex-direction: row-reverse; }
+        .item-visual { flex: 1; background-color: #F4EFEA; aspect-ratio: 1.2 / 1; max-width: 500px; border-radius: 4px; }
+        .item-content { flex: 1; max-width: 500px; }
+        .item-content h2 { font-size: 2rem; font-weight: 400; margin-bottom: 15px; color: #111111; }
+        .item-content p { font-size: 1rem; color: #666666; margin-bottom: 25px; }
+        .item-btn { display: inline-block; border: 1px solid #333333; background: transparent; color: #333333; padding: 12px 30px; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
+        .item-btn:hover { background-color: #333333; color: #ffffff; }
+        footer { background-color: #F4EFEA; text-align: center; padding: 80px 20px; margin-top: 120px; }
+        footer h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 15px; }
+        footer p { color: #666666; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Jannis Politidis</h1>
+        <p>Traditional watercolor paintings meets modern digital software engineering.</p>
+    </header>
+
+    <main id="tools-container"></main>
+
+    <footer>
+        <h3>ArtLab Platform</h3>
+        <p>Unlock our highly optimized suite of image metadata bakers, private local audit tools, and copyright protections.</p>
+        <a href="https://akvarellskiss.se" class="item-btn">Open ArtLab</a>
+    </footer>
+
+    <!-- 1. Hämta listan med länkar först -->
+    <script src="tools.js"></script>
+
+    <!-- 2. Motorn som bygger rutorna automatiskt baserat på listan -->
+    <script>
+        const container = document.getElementById('tools-container');
+        if (typeof toolsData !== 'undefined') {
+            toolsData.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'grid-item';
+                itemElement.innerHTML = `
+                    <div class="item-visual"></div>
+                    <div class="item-content">
+                        <h2>${item.title}</h2>
+                        <p>${item.desc}</p>
+                        <a href="${item.url}" class="item-btn" target="_blank">${item.action}</a>
+                    </div>
+                `;
+                container.appendChild(itemElement);
+            });
+        }
+    </script>
+</body>
+</html>
